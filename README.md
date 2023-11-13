@@ -14,4 +14,4 @@ Data available: Shapefile for *R.ponticum subsp baeticum* species available in N
 
 The latest version of R (>4.2.3) should be installed from [https://cran.r-project.org](https://cran.r-project.org/).
 
-Contact: Tristan Ubaldi (tristan.ubaldi@u-picardie.fr)
+Contact: Tristan Ubaldi (tristan.ubaldi@u-picardie.fr) and Marion Casati (marion.casati@u-picardie.fr).
