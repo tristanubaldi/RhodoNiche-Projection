@@ -24,18 +24,19 @@ ssp <- c("ssp126", "ssp370", "ssp585")
 
 #### 1. Download shapefile #### 
 ### 1.1. Country of study with gadm() function
-# Function gadm() to download my country or countries Shapefile(s) from gadm.org/index
-source("https://raw.githubusercontent.com/tristanubaldi/NicheOverlapApproach/main/functions/gadm_function.R")
-intro.shp <- gadm(dir = "~/Documents/", # indicate directory where to save shapefile
-                  country = intro, # introduction country name
-                  format = "vect") # save in format "vector" or "shapefile"
+# Function gadm() from geodata package
+require(countrycode)
+ISO <- countrycode(intro.name, origin = 'country.name', destination = 'iso3c')
+require(terra)
+require(geodata)
+intro.shp <- gadm(country=ISO, level=0, path=tempdir(), version="latest")
 
 ### 1.2. Native Range (NR) of studied species
 # Create native range shapefile (nr.shp)
 # Download species Shapefile on Github:
 "https://github.com/tristanubaldi/RhodoNiche-Projection/tree/main/Native_range/" 
-if (file.exists(paste(dir = "~/Documents/", # indicate directory where shapefile has been saved
-                      species, sep="/"))) {
+dir = "~/Documents/" # indicate directory where shapefile has been saved
+if (file.exists(paste(dir, species, sep="/"))) {
       d <- (paste(dir, species, sep="/"))
       file <- list.files(path = d, pattern = "\\.shp$", full.names = F) # found file .shp in folder
       if (length(file) < 0) {
